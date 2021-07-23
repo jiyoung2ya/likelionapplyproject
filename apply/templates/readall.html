@@ -4,41 +4,43 @@
     <h3>전체 글 페이지 입니다.</h3><br>
     <h4>현재 지원자는 {{views_apply}}명입니다. </h4>
     {% if user.is_staff %}
-    {% for a in views_apply_all %}
-    <div class="card">
-        <h5 class="card-header">예비사자</h5>
-        <div class="card-body">
-            <h5 class="card-title"> <a href="{%url 'urlnamedetail' a.id %}">{{a.name}}</a></h5>
-            <p class="card-text">        학번: {{a.student_id}}<br>
-                                        학과: {{a.major}}<br>
-                                        작성날짜: {{a.date}}<br></p>
-            <a href="{%url 'urlnamedetail' a.id %}" class="btn btn-primary">자세히</a>
+        {% for a in views_apply_all %}
+        <div class="card">
+            <h5 class="card-header">예비사자</h5>
+            <div class="card-body">
+                <h5 class="card-title"> <a href="{%url 'urlnamedetail' a.id %}">{{a.name}}</a></h5>
+                <p class="card-text">        학번: {{a.student_id}}<br>
+                                            학과: {{a.major}}<br>
+                                            작성날짜: {{a.date}}<br></p>
+                <a href="{%url 'urlnamedetail' a.id %}" class="btn btn-primary">자세히</a>
+            </div>
         </div>
-    </div>
-        <br>
+            <br>
 
-    {% endfor %}
+        {% endfor %}
 
 
     {% elif user.is_authenticated %}
-    {% for a in views_apply_all %}
+        {% for a in views_apply_all %}
 
-        <br>
-    <div class="card">
-        <h5 class="card-header">예비사자</h5>
-        <div class="card-body">
-            {% if user.student_id == a.student_id %}
-            <h5 class="card-title"> <a href="{%url 'urlnamedetail' a.id %}">{{a.name}}</a></h5>
-            <p class="card-text">        학번: {{a.student_id}}<br>
-            {% endif %}
+            <br>
+        <div class="card">
+            <h5 class="card-header">예비사자</h5>
+            <div class="card-body">
+                    {% if user.student_id == a.student_id %}
+                    <h5 class="card-title"> <a href="{%url 'urlnamedetail' a.id %}">{{a.name}}</a></h5>
+                    <p class="card-text">        학번: {{a.student_id}}<br>
+                    {% endif %}
 
-            학과: {{a.major}}<br>
-            작성날짜: {{a.date}}<br></p>
-            <a href="{%url 'urlnamedetail' a.id %}" class="btn btn-primary">자세히</a>
+                학과: {{a.major}}<br>
+                작성날짜: {{a.date}}<br></p>
+                    {% if user.student_id == a.student_id %}
+                <a href="{%url 'urlnamedetail' a.id %}" class="btn btn-primary">자세히</a>
+                    {% endif %}
+            </div>
         </div>
-    </div>
-        <br>
-    {% endfor %}
+            <br>
+        {% endfor %}
     {% endif %}
 
 {% endblock%}
