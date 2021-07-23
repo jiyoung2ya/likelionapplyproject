@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div style="text-align: center;">
+        {% if messages %}
+            {% for m in messages %}
+                <div style="text-align: center; color: red;">
+                    <br><strong>{{m.message}}</strong>                  
+                </div>
+            {% endfor %}
+            {% endif %}
+        <form action="{%url 'urlnamesignup' %}" method="POST">
+            {% csrf_token %}
+            
+            {{views_signup_form.as_p}}
+            <button type="submit" class="btn btn-warning">회원가입</button>
+            <div style="color: orange;">
+                <br>**전화번호는 아래와 같은 형식으로 기입 부탁드립니다.**<br>           
+                전화번호가 010-1234-5678인 경우 -> +821012345678
+            </div>
+        </form>        
+
+    </div>
+    {% endblock%}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    {% if user.is_authenticated %}
+    <div style="text-align: center;">
+        <form action="{%url 'urlnamenew' %}" method="POST">
+        {% csrf_token %}
+        
+        <h3>새 글작성 페이지입니다.</h3>
+
+
+    <div class="input-group mb-auto">
+    <span class="input-group-text" id="inputGroup-sizing-default">이름</span>
+    <input type="text" name="htmlname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-auto" value="{{user.name}}" readonly>
+    </div>
+
+
+        <div class="input-group mb-auto">
+    <span class="input-group-text" id="inputGroup-sizing-default">학번</span>
+    <input type="text" name="htmlstudent_id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-auto"  value="{{user.student_id}}" readonly>
+    </div>
+
+        <div class="input-group mb-auto">
+    <span class="input-group-text" id="inputGroup-sizing-default">학과</span>
+    <input type="text" name="htmlmajor" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-auto"  value="{{user.major}}" readonly>
+    </div>
+
+
+            <div class="form-floating">
+            <textarea class="form-control" name="htmlq1" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+            <label for="floatingTextarea2">Q1. 지원동기</label>
+            </div>
+            <div class="form-floating">
+            <textarea class="form-control" name="htmlq2" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+            <label for="floatingTextarea2">Q2. 자신의 장단점</label>
+            </div>
+            <div class="form-floating">
+            <textarea class="form-control" name="htmlq3" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+            <label for="floatingTextarea2">Q3. 멋사에서 해보고 싶은 것</label>
+            </div>
+            <div class="form-floating">
+            <textarea class="form-control" name="htmlq4" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px"></textarea>
+            <label for="floatingTextarea2">Q4. 앞으로의 다짐</label>
+            </div>
+            <br>
+            <br>
+
+            </form>
+            <div class="mb-3">
+            <label for="formFile" class="form-label">포트폴리오 제출(필수X)</label>
+            <input class="form-control" type="file" id="formFile">
+            </div>
+            <button type="submit"> 제출 </button>
+        
+    </div>
+    {% endif %}
+
+{% endblock%}
